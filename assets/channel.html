@@ -1,0 +1,24 @@
+<html>
+
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+    </script>
+    <!--
+    <script src="http://192.155.93.221/modelPush.js"></script>
+-->
+    <!--
+    -->
+	
+    <script src="http://localhost:3000/modelPush.js"></script>
+</head>
+
+<body>
+    <script>
+        var v = new MyChannel("123", function(data) {
+        	console.log(data);
+        });
+        v.push('send okok');
+    </script>
+</body>
+
+</html>
