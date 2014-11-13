@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+		</script>
+		<script src="http://localhost:1337/js/dependencies/sails.io.js"></script>
+		<script src="http://localhost:1337/sailsx2.js"></script>
+		<link rel="stylesheet" type="text/css" href="index.css"/>
+	</head>
+	<body>
+		<button onclick="create()">Create</button>
+		<button onclick="update()">Update</button>
+		<button onclick="list()">List</button>
+		<button onclick="deleteAll()">Delete All</button>
+		<br>
+		<div id='a' style='width:45%;display:inline-block;margin:10px'>
+			<h1>Callback</h1>
+			<div id='callback'></div>
+		</div>
+		<div id='b' style="width:45%;float:left;margin:10px">
+			<h1>Item</h1>
+			<div id='console'></div>
+		</div>
+		<script>
+		    var itemIO = new x2("http://localhost:1337/Item",{
+		    	message:function(msg){
+		    		$('#callback').append('message',JSON.stringify(msg)).append("<br>");
+		    	}
+		    });
+
+		    function create(){
+		    	var item = new Item( {name: 'Batman' , age: 37} );
+				itemIO.create(item , function(item){
+					var info = JSON.stringify(item.info());
+					list();
+				});
+		    }
+
+		    function update(){
+		    	itemIO.each(function(item){
+		    		var age = parseInt(item.get('age'));
+		    		item.set('age', ++age);
+		    		itemIO.update(item);
+		    	},function(){ list(); });
+		    }
+
+		    function list(){
+		    	itemIO.list(function(list){
+		    		console.log(list);
+		    		var data = JSON.stringify(list).replace(/},{/g , "}<br><br>{");
+		    		$('#console').html(data);
+		    	});
+		    }
+
+		    function deleteAll(){
+		    	itemIO.each(function(item){
+		    		itemIO.destroy(item);
+		    	});
+		    }
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,24 @@
+{
+  "data": {
+    "item": []
+  },
+  "schema": {
+    "item": {
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    }
+  },
+  "counters": {
+    "item": {}
+  }
+}
