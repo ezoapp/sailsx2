@@ -891,7 +891,7 @@ var ModelPrototype = function(info) {
 
 function xIO(url,action){
 	if(url.indexOf('http://')!=0){
-		url = "http://"+ url;
+		url = "http://192.155.93.221/"+ url;
 	}
 	if(url.lastIndexOf(':')==4){
 		var urlArray = url.split('/');
