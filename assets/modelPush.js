@@ -702,7 +702,7 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
       // has completed.
       // consolog('Auto-connecting `io.socket` to Sails... (requests will be queued in the mean-time)');
       function goAheadAndActuallyConnect() {
-
+      	return;
         // Initiate connection
         var actualSocket = io.connect(io.sails.url);
 
