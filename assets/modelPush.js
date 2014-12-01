@@ -994,9 +994,9 @@ window[name] = xIO;
 	var MyChannel = function(name,callback){
 		var isConnect = false;
 		var presend = [];
-    	var id;
+    	var id,hServer = "http://192.155.93.221/";
     	var info = {name:name};
-        var mp = new ModelPush("http://192.155.93.221/channel", {
+        var mp = new ModelPush(hServer+"channel", {
             connect: function() {
                 console.log('"' + name + '\" channel is already connected');
                 for(var data in presend){
@@ -1031,6 +1031,15 @@ window[name] = xIO;
 	            	var pushData = {id:id,name:name,data:data};
 	            	mp.update(new Channel(pushData));
             	}
+            },
+            server: function(httpServer){
+            	if(httpServer.lastIndexOf('/')!=httpServer.length-1){
+            		httpServer += '/';
+            	}
+            	if(httpServer.substr(0,7)!="http://"){
+            		httpServer = "http://"+httpServer;
+            	}
+            	hServer = httpServer;
             }
         }
     }
