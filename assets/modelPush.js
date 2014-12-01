@@ -991,11 +991,11 @@ window[name] = xIO;
 
 // MyChannel
 (function(name){
+	var hServer = "http://192.155.93.221/";
 	var MyChannel = function(name,callback){
 		var isConnect = false;
 		var presend = [];
-    	var id,hServer = "http://192.155.93.221/";
-    	var info = {name:name};
+    	var id;
         var mp = new ModelPush(hServer+"channel", {
             connect: function() {
                 console.log('"' + name + '\" channel is already connected');
@@ -1031,17 +1031,20 @@ window[name] = xIO;
 	            	var pushData = {id:id,name:name,data:data};
 	            	mp.update(new Channel(pushData));
             	}
-            },
-            server: function(httpServer){
-            	if(httpServer.lastIndexOf('/')!=httpServer.length-1){
-            		httpServer += '/';
-            	}
-            	if(httpServer.substr(0,7)!="http://"){
-            		httpServer = "http://"+httpServer;
-            	}
-            	hServer = httpServer;
             }
         }
+    }
+	MyChannel.server = function(httpServer){
+		if(arguments.length==0){
+			return hServer;
+		}
+    	if(httpServer.lastIndexOf('/')!=httpServer.length-1){
+    		httpServer += '/';
+    	}
+    	if(httpServer.substr(0,7)!="http://"){
+    		httpServer = "http://"+httpServer;
+    	}
+    	hServer = httpServer;
     }
     window[name] = MyChannel;
 })('MyChannel');
