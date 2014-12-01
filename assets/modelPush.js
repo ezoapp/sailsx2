@@ -1013,7 +1013,7 @@ window[name] = xIO;
         });
         mp.find('name='+name, function(data) {
             if(data.info().length==0){
-            	mp.create(new Channel(info),function(data){
+            	mp.create(new Channel({name: name}),function(data){
             		id = data.id;
             	});
             }else {
