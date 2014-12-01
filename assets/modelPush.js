@@ -991,7 +991,7 @@ window[name] = xIO;
 
 // MyChannel
 (function(name){
-	var hServer = "http://192.155.93.221/";
+	var hServer = "http://106.185.55.10/";
 	var MyChannel = function(name,callback){
 		var isConnect = false;
 		var presend = [];
